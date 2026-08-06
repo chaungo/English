@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global English Mastery: Grade 9 Semester I Review Suite</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #06b6d4;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-yellow: #f59e0b;
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 280px;
+            background-color: #0b0f19;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+            position: fixed;
+            height: 100vh;
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            padding-left: 0.5rem;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .brand-text h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-light);
+            line-height: 1.2;
+        }
+
+        .brand-text span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex-grow: 1;
+        }
+
+        .nav-item button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .nav-item button:hover, .nav-item button.active {
+            background-color: var(--primary);
+            color: var(--text-light);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-card);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info input {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .user-info input:focus {
+            border-color: var(--primary);
+        }
+
+        .stats-summary {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .timer-display {
+            font-family: monospace;
+            font-size: 1.3rem;
+            color: var(--accent-yellow);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* View Containers */
+        .module-view {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .module-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .module-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .module-title {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .module-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Card Panels */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Module 1: Vocab Matcher */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .match-card {
+            background-color: var(--bg-dark);
+            border: 2px dashed var(--border-color);
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .match-card:hover {
+            border-color: var(--primary);
+            background-color: var(--bg-card-hover);
+        }
+
+        .match-card.selected {
+            border-color: var(--secondary);
+            background-color: rgba(6, 182, 212, 0.1);
+        }
+
+        .match-card.matched {
+            border-color: var(--accent-green);
+            background-color: rgba(16, 185, 129, 0.1);
+            cursor: default;
+        }
+
+        /* Module 2: Grammar Transformer */
+        .grammar-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .grammar-item:last-child {
+            border-bottom: none;
+        }
+
+        .prompt-text {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .hint-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+
+        .grammar-input-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .grammar-input {
+            flex-grow: 1;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.75rem;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .grammar-input:focus {
+            border-color: var(--primary);
+        }
+
+        .check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .check-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .feedback-text {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .feedback-correct { color: var(--accent-green); }
+        .feedback-incorrect { color: var(--accent-red); }
+
+        /* Module 3: Reading Comprehension */
+        .reading-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .reading-passage {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #cbd5e1;
+        }
+
+        .vocab-term {
+            background-color: rgba(79, 70, 229, 0.25);
+            color: #a5b4fc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border-bottom: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .vocab-term:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .side-vocab-panel {
+            background-color: var(--bg-dark);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .vocab-panel-title {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .reading-questions {
+            margin-top: 2rem;
+        }
+
+        .mcq-option-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .mcq-option {
+            background-color: var(--bg-dark);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .mcq-option:hover {
+            background-color: var(--bg-card-hover);
+        }
+
+        .mcq-option.selected-opt {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.2);
+        }
+
+        .mcq-option.correct-opt {
+            border-color: var(--accent-green);
+            background-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .mcq-option.incorrect-opt {
+            border-color: var(--accent-red);
+            background-color: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Module 4: Pronunciation */
+        .phonetic-q {
+            margin-bottom: 1.5rem;
+        }
+
+        .phonetic-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        /* Certificate View */
+        .cert-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .certificate-svg {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        /* Utilities */
+        .btn-action {
+            background-color: var(--secondary);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .main-content { margin-left: 0; }
+            .reading-layout { grid-template-columns: 1fr; }
+            .matching-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">G9</div>
+            <div class="brand-text">
+                <h1>Global English</h1>
+                <span>Grade 9 Semester I Review</span>
+            </div>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <button class="active" onclick="switchView('overview-view', this)">📊 Dashboard</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="switchView('module1-view', this)">🧩 M1: Vocab Matcher</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="switchView('module2-view', this)">✍️ M2: Grammar Suite</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="switchView('module3-view', this)">📖 M3: Reading Gloss</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="switchView('module4-view', this)">🗣️ M4: Phonetics</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="switchView('certificate-view', this)">🎓 Certificate</button>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <button class="download-btn" onclick="exportOfflineApp()">
+                📦 Download Full Suite (.html)
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Top Bar Header -->
+        <div class="top-bar">
+            <div class="user-info">
+                <label for="student-name">Student:</label>
+                <input type="text" id="student-name" value="Nguyen Van A" onchange="updateStudentName(this.value)">
+            </div>
+            <div class="stats-summary">
+                <div class="stat-box">
+                    <div class="stat-label">Timer</div>
+                    <div class="timer-display" id="timer">45:00</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Total Score</div>
+                    <div class="stat-value" id="global-score">0 / 30</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: Dashboard / Overview -->
+        <div id="overview-view" class="module-view active">
+            <div class="module-header">
+                <h2 class="module-title">Assessment Dashboard</h2>
+                <p class="module-desc">Complete all four modules to earn your Semester I Master Certificate based on the English 9 Global Success curriculum.</p>
+            </div>
+
+            <div class="card">
+                <h3>Modules Progress</h3>
+                <br>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h4>Module 1: Vocabulary</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Synonyms & Antonyms (Units 1-6)</p>
+                        <p style="margin-top: 1rem; font-weight: bold; color: var(--secondary);" id="score-m1">0 / 6 pts</p>
+                    </div>
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h4>Module 2: Grammar</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Sentences & Verb Forms</p>
+                        <p style="margin-top: 1rem; font-weight: bold; color: var(--secondary);" id="score-m2">0 / 8 pts</p>
+                    </div>
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h4>Module 3: Reading</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Interactive Gloss & Quiz</p>
+                        <p style="margin-top: 1rem; font-weight: bold; color: var(--secondary);" id="score-m3">0 / 6 pts</p>
+                    </div>
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <h4>Module 4: Phonetics</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Stress & Pronunciation</p>
+                        <p style="margin-top: 1rem; font-weight: bold; color: var(--secondary);" id="score-m4">0 / 10 pts</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>LocalStorage & Suite Controls</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Your high score and name are saved locally in your browser.</p>
+                <button class="btn-action" onclick="resetAllProgress()">Reset Exam Progress</button>
+            </div>
+        </div>
+
+        <!-- VIEW: Module 1 - Vocabulary Matcher -->
+        <div id="module1-view" class="module-view">
+            <div class="module-header">
+                <h2 class="module-title">Module 1: Vocabulary Matcher</h2>
+                <p class="module-desc">Click a term on the left, then click its corresponding definition or synonym on the right.</p>
+            </div>
+
+            <div class="card">
+                <div class="matching-grid">
+                    <div class="match-column" id="terms-column"></div>
+                    <div class="match-column" id="defs-column"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: Module 2 - Grammar Transformer -->
+        <div id="module2-view" class="module-view">
+            <div class="module-header">
+                <h2 class="module-title">Module 2: Sentence Transformation & Grammar</h2>
+                <p class="module-desc">Rewrite sentences or complete the brackets using reported speech, gerunds/infinitives, or future forms.</p>
+            </div>
+
+            <div class="card" id="grammar-container">
+                <!-- Javascript populated -->
+            </div>
+        </div>
+
+        <!-- VIEW: Module 3 - Reading Comprehension -->
+        <div id="module3-view" class="module-view">
+            <div class="module-header">
+                <h2 class="module-title">Module 3: Interactive Reading & Lexicon</h2>
+                <p class="module-desc">Click any highlighted word in the passage to view its Vietnamese meaning and grammatical notes in the side panel.</p>
+            </div>
+
+            <div class="reading-layout">
+                <div class="card">
+                    <h3>Eco-Friendly Energy & Modern Transportation</h3>
+                    <br>
+                    <div class="reading-passage">
+                        In recent decades, finding <span class="vocab-term" onclick="showGloss('renewable', 'renew-able /ri\'nju:əbl/', 'Adjective', 'Có thể tái tạo', 'Energies like solar and wind power that do not run out.')">renewable</span> energy sources has become vital. Fossil fuels are highly <span class="vocab-term" onclick="showGloss('risky', '\'ris.ki/', 'Adjective', 'Rủi ro / Nguy hiểm', 'Involving danger or possibility of damage.')">risky</span> for long-term climate stability. Engineers are now building <span class="vocab-term" onclick="showGloss('amphibious', 'æm\'fib.i.əs/', 'Adjective', 'Lưỡng cư / Chạy được trên cạn lẫn dưới nước', 'Able to operate on both land and water.')">amphibious</span> vehicles and <span class="vocab-term" onclick="showGloss('economical', 'ˌiː.kəˈnɒm.ɪ.kəl/', 'Adjective', 'Tiết kiệm / Kinh tế', 'Providing good value or using small amounts of energy.')">economical</span> electric buses to reduce pollution. Many communities also show deep <span class="vocab-term" onclick="showGloss('compassion', 'kəm\'pæʃ.ən/', 'Noun', 'Lòng trắc ẩn / Lòng tốt', 'Sympathy and concern for the sufferings of others.')">compassion</span> for the environment by learning to <span class="vocab-term" onclick="showGloss('compost', '\'kɒm.pɒst/', 'Verb / Noun', 'Ủ phân hữu cơ', 'Recycling organic waste into plant fertilizer.')">compost</span> organic food waste at home.
+                    </div>
+
+                    <div class="reading-questions">
+                        <h4 style="margin-bottom: 1rem;">Comprehension Questions</h4>
+                        <div id="reading-mcq-list"></div>
+                    </div>
+                </div>
+
+                <div class="side-vocab-panel" id="side-vocab-panel">
+                    <div class="vocab-panel-title">💡 Lexicon Side Panel</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Click highlighted terms in the text to see breakdown details here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: Module 4 - Phonetics & Stress -->
+        <div id="module4-view" class="module-view">
+            <div class="module-header">
+                <h2 class="module-title">Module 4: Pronunciation & Primary Stress</h2>
+                <p class="module-desc">Select the correct word that has a different pronunciation or stress pattern from the others.</p>
+            </div>
+
+            <div class="card" id="phonetics-container">
+                <!-- Javascript populated -->
+            </div>
+        </div>
+
+        <!-- VIEW: Certificate View -->
+        <div id="certificate-view" class="module-view">
+            <div class="module-header">
+                <h2 class="module-title">Official Certificate of Achievement</h2>
+                <p class="module-desc">Dynamic real-time certificate preview generated based on your assessment results.</p>
+            </div>
+
+            <div class="cert-container">
+                <svg id="certificate-svg" class="certificate-svg" viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="800" height="550" fill="#0f172a" rx="15"/>
+                    <rect x="20" y="20" width="760" height="510" fill="#1e293b" rx="10" stroke="#4f46e5" stroke-width="3" stroke-dasharray="8 4"/>
+                    
+                    <!-- Decorative Corners -->
+                    <circle cx="40" cy="40" r="15" fill="#06b6d4" opacity="0.3"/>
+                    <circle cx="760" cy="40" r="15" fill="#06b6d4" opacity="0.3"/>
+                    <circle cx="40" cy="510" r="15" fill="#06b6d4" opacity="0.3"/>
+                    <circle cx="760" cy="510" r="15" fill="#06b6d4" opacity="0.3"/>
+
+                    <!-- Title -->
+                    <text x="400" y="90" text-anchor="middle" fill="#06b6d4" font-size="20" font-weight="bold" letter-spacing="2">GLOBAL ENGLISH MASTERY</text>
+                    <text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="28" font-weight="bold">CERTIFICATE OF COMPLETION</text>
+                    
+                    <line x1="250" y1="150" x2="550" y2="150" stroke="#4f46e5" stroke-width="2"/>
+
+                    <text x="400" y="190" text-anchor="middle" fill="#94a3b8" font-size="14">This is to proudly certify that</text>
+                    
+                    <!-- Student Name -->
+                    <text id="cert-svg-name" x="400" y="240" text-anchor="middle" fill="#10b981" font-size="32" font-weight="bold">Nguyen Van A</text>
+                    
+                    <text x="400" y="280" text-anchor="middle" fill="#94a3b8" font-size="14">has successfully completed the Semester I Comprehensive Assessment Suite</text>
+                    <text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="600">English 9 - Global Success Standard</text>
+
+                    <!-- Score Badge -->
+                    <rect x="280" y="340" width="240" height="60" fill="#0f172a" rx="8" stroke="#334155"/>
+                    <text x="400" y="365" text-anchor="middle" fill="#94a3b8" font-size="12">FINAL SCORE ACHIEVED</text>
+                    <text id="cert-svg-score" x="400" y="390" text-anchor="middle" fill="#f59e0b" font-size="20" font-weight="bold">0 / 30 (0%)</text>
+
+                    <!-- Footer Info -->
+                    <text id="cert-svg-date" x="100" y="470" fill="#94a3b8" font-size="12">Date: 2026-08-06</text>
+                    <text x="700" y="470" text-anchor="end" fill="#94a3b8" font-size="12">Grade 9 Academic Council</text>
+                    <line x1="550" y1="455" x2="700" y2="455" stroke="#94a3b8" stroke-width="1"/>
+                </svg>
+
+                <button class="btn-action" onclick="window.print()">🖨️ Print Certificate</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        /* State & LocalStorage Management */
+        let state = {
+            studentName: localStorage.getItem('g9_student_name') || 'Nguyen Van A',
+            scores: { m1: 0, m2: 0, m3: 0, m4: 0 },
+            timeLeft: 2700, // 45 minutes
+            timerInterval: null
+        };
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('student-name').value = state.studentName;
+            loadStoredScores();
+            startTimer();
+            initModule1();
+            initModule2();
+            initModule3();
+            initModule4();
+            updateGlobalStats();
+        });
+
+        function updateStudentName(val) {
+            state.studentName = val || 'Student Name';
+            localStorage.setItem('g9_student_name', state.studentName);
+            updateCertificate();
+        }
+
+        function loadStoredScores() {
+            const saved = localStorage.getItem('g9_scores');
+            if(saved) {
+                try { state.scores = JSON.parse(saved); } catch(e){}
+            }
+        }
+
+        function saveScores() {
+            localStorage.setItem('g9_scores', JSON.stringify(state.scores));
+            updateGlobalStats();
+        }
+
+        function updateGlobalStats() {
+            const total = state.scores.m1 + state.scores.m2 + state.scores.m3 + state.scores.m4;
+            document.getElementById('global-score').textContent = `${total} / 30`;
+            document.getElementById('score-m1').textContent = `${state.scores.m1} / 6 pts`;
+            document.getElementById('score-m2').textContent = `${state.scores.m2} / 8 pts`;
+            document.getElementById('score-m3').textContent = `${state.scores.m3} / 6 pts`;
+            document.getElementById('score-m4').textContent = `${state.scores.m4} / 10 pts`;
+            updateCertificate();
+        }
+
+        function switchView(viewId, btn) {
+            document.querySelectorAll('.module-view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-item button').forEach(b => b.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            if(btn) btn.classList.add('active');
+        }
+
+        /* Timer Logic */
+        function startTimer() {
+            state.timerInterval = setInterval(() => {
+                if(state.timeLeft <= 0) {
+                    clearInterval(state.timerInterval);
+                    alert("Time is up for the exam!");
+                    return;
+                }
+                state.timeLeft--;
+                const mins = Math.floor(state.timeLeft / 60).toString().padStart(2, '0');
+                const secs = (state.timeLeft % 60).toString().padStart(2, '0');
+                document.getElementById('timer').textContent = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        /* MODULE 1: Vocabulary Matcher Logic */
+        const vocabPairs = [
+            { id: 1, term: "Risky", def: "Dangerous / Inconvenient to try" },
+            { id: 2, term: "Renewable", def: "Energy source that won't run out" },
+            { id: 3, term: "Compassion", def: "Sympathy & care for others" },
+            { id: 4, term: "Amphibious", def: "Operates on land and water" },
+            { id: 5, term: "Compost", def: "Recycle organic food waste" },
+            { id: 6, term: "Economical", def: "Cost-effective / Saves money" }
+        ];
+
+        let m1SelectedTerm = null;
+        let m1MatchedCount = 0;
+
+        function initModule1() {
+            const termsCol = document.getElementById('terms-column');
+            const defsCol = document.getElementById('defs-column');
+            termsCol.innerHTML = '<h4 style="margin-bottom:0.5rem">Terms</h4>';
+            defsCol.innerHTML = '<h4 style="margin-bottom:0.5rem">Definitions</h4>';
+
+            const shuffledTerms = [...vocabPairs].sort(() => Math.random() - 0.5);
+            const shuffledDefs = [...vocabPairs].sort(() => Math.random() - 0.5);
+
+            shuffledTerms.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'match-card';
+                el.dataset.id = item.id;
+                el.textContent = item.term;
+                el.onclick = () => selectTerm(el);
+                termsCol.appendChild(el);
+            });
+
+            shuffledDefs.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'match-card';
+                el.dataset.id = item.id;
+                el.textContent = item.def;
+                el.onclick = () => selectDef(el);
+                defsCol.appendChild(el);
+            });
+        }
+
+        function selectTerm(el) {
+            if(el.classList.contains('matched')) return;
+            document.querySelectorAll('#terms-column .match-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            m1SelectedTerm = el;
+        }
+
+        function selectDef(el) {
+            if(el.classList.contains('matched') || !m1SelectedTerm) return;
+            if(m1SelectedTerm.dataset.id === el.dataset.id) {
+                m1SelectedTerm.classList.remove('selected');
+                m1SelectedTerm.classList.add('matched');
+                el.classList.add('matched');
+                m1SelectedTerm = null;
+                m1MatchedCount++;
+                state.scores.m1 = m1MatchedCount;
+                saveScores();
+            } else {
+                el.style.borderColor = 'var(--accent-red)';
+                setTimeout(() => el.style.borderColor = 'var(--border-color)', 800);
+            }
+        }
+
+        /* MODULE 2: Grammar Transformer Logic */
+        const grammarQuestions = [
+            {
+                id: 1,
+                prompt: "1. Henry is really into playing the drum when he has free time. (Use: 'fond')",
+                hint: "Rewrite starting with: Henry is...",
+                answers: ["henry is fond of playing the drum when he has free time", "henry is fond of playing the drum"]
+            },
+            {
+                id: 2,
+                prompt: "2. We plan to install solar panels on the roof of our house. (Use: 'be going to')",
+                hint: "Rewrite starting with: We are...",
+                answers: ["we are going to install solar panels on the roof of our house", "we are going to install solar panels"]
+            },
+            {
+                id: 3,
+                prompt: "3. Although my homework was difficult, I finished it before going to bed. (Use: 'but')",
+                hint: "Rewrite starting with: My homework...",
+                answers: ["my homework was difficult, but i finished it before going to bed", "my homework was difficult but i finished it before going to bed"]
+            },
+            {
+                id: 4,
+                prompt: "4. Don't forget __________ (phone) your mother tonight. (Gerund/Infinitive)",
+                hint: "Type the correct verb form",
+                answers: ["to phone"]
+            },
+            {
+                id: 5,
+                prompt: "5. Look at those black clouds. It __________ (rain) soon. (BE GOING TO / WILL)",
+                hint: "Type the correct verb form",
+                answers: ["is going to rain"]
+            },
+            {
+                id: 6,
+                prompt: "6. She doesn't allow __________ (smoke) in the house.",
+                hint: "Type the correct verb form",
+                answers: ["smoking"]
+            },
+            {
+                id: 7,
+                prompt: "7. I think people __________ (speak) English everywhere in 2100.",
+                hint: "Type the correct verb form",
+                answers: ["will speak"]
+            },
+            {
+                id: 8,
+                prompt: "8. I enjoy __________ (read) your letters very much.",
+                hint: "Type the correct verb form",
+                answers: ["reading"]
+            }
+        ];
+
+        function initModule2() {
+            const container = document.getElementById('grammar-container');
+            container.innerHTML = '';
+
+            grammarQuestions.forEach((q, idx) => {
+                const item = document.createElement('div');
+                item.className = 'grammar-item';
+                item.innerHTML = `
+                    <div class="prompt-text">${q.prompt}</div>
+                    <div class="hint-text">Hint: ${q.hint}</div>
+                    <div class="grammar-input-group">
+                        <input type="text" class="grammar-input" id="g-input-${idx}" placeholder="Type your answer...">
+                        <button class="check-btn" onclick="checkGrammar(${idx})">Submit</button>
+                    </div>
+                    <div class="feedback-text" id="g-fb-${idx}"></div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function checkGrammar(idx) {
+            const val = document.getElementById(`g-input-${idx}`).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const fb = document.getElementById(`g-fb-${idx}`);
+            const q = grammarQuestions[idx];
+
+            if(q.answers.some(ans => val.includes(ans) || val === ans)) {
+                fb.textContent = "✓ Correct!";
+                fb.className = "feedback-text feedback-correct";
+                if(!q.passed) {
+                    q.passed = true;
+                    state.scores.m2 += 1;
+                    saveScores();
+                }
+            } else {
+                fb.textContent = `✗ Incorrect. Target structure: "${q.answers[0]}"`;
+                fb.className = "feedback-text feedback-incorrect";
+            }
+        }
+
+        /* MODULE 3: Reading Comprehension Logic */
+        const readingMCQs = [
+            {
+                q: "1. Why are renewable energy sources vital according to the passage?",
+                opts: ["A. They are cheaper than all energy", "B. Fossil fuels are risky for climate stability", "C. They run out quickly", "D. They cause organic waste"],
+                ans: 1
+            },
+            {
+                q: "2. What type of vehicle operates on both land and water?",
+                opts: ["A. Electric bus", "B. Shuttle train", "C. Amphibious vehicle", "D. Hydroplane"],
+                ans: 2
+            },
+            {
+                q: "3. What is composting used for?",
+                opts: ["A. Generating solar heat", "B. Recycling organic food waste", "C. Driving electric vehicles", "D. Building fast engines"],
+                ans: 1
+            }
+        ];
+
+        function initModule3() {
+            const list = document.getElementById('reading-mcq-list');
+            list.innerHTML = '';
+
+            readingMCQs.forEach((item, qIdx) => {
+                const wrap = document.createElement('div');
+                wrap.style.marginBottom = '1.25rem';
+                wrap.innerHTML = `<div style="font-weight:600; font-size:0.95rem;">${item.q}</div>`;
+                
+                const optList = document.createElement('div');
+                optList.className = 'mcq-option-list';
+
+                item.opts.forEach((optText, optIdx) => {
+                    const optEl = document.createElement('div');
+                    optEl.className = 'mcq-option';
+                    optEl.textContent = optText;
+                    optEl.onclick = () => selectReadingMCQ(qIdx, optIdx, optEl, item.ans);
+                    optList.appendChild(optEl);
+                });
+
+                wrap.appendChild(optList);
+                list.appendChild(wrap);
+            });
+        }
+
+        function showGloss(term, ipa, pos, vn, desc) {
+            const panel = document.getElementById('side-vocab-panel');
+            panel.innerHTML = `
+                <div class="vocab-panel-title">💡 Lexicon: <strong>${term}</strong></div>
+                <p><strong>IPA:</strong> <span style="color:var(--secondary);">${ipa}</span></p>
+                <p><strong>Part of Speech:</strong> ${pos}</p>
+                <p style="margin-top:0.5rem;"><strong>Vietnamese Meaning:</strong></p>
+                <div style="background:var(--bg-card); padding:0.5rem; border-radius:6px; font-weight:bold; color:var(--accent-green); margin-bottom:0.5rem;">
+                    ${vn}
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-muted);">${desc}</p>
+            `;
+        }
+
+        function selectReadingMCQ(qIdx, optIdx, element, correctIdx) {
+            const parent = element.parentElement;
+            if(parent.dataset.answered) return;
+            parent.dataset.answered = "true";
+
+            const options = parent.children;
+            if(optIdx === correctIdx) {
+                element.classList.add('correct-opt');
+                state.scores.m3 += 2; // 2 pts per question = 6 total
+                saveScores();
+            } else {
+                element.classList.add('incorrect-opt');
+                options[correctIdx].classList.add('correct-opt');
+            }
+        }
+
+        /* MODULE 4: Phonetics Logic */
+        const phoneticsData = [
+            { q: "1. Pronunciation: Which word has a different underlined part?", opts: ["A. rhythm", "B. heavy", "C. behind", "D. happening"], ans: 0 },
+            { q: "2. Pronunciation: Which word has a different underlined part?", opts: ["A. bass", "B. amazing", "C. stay", "D. watch"], ans: 3 },
+            { q: "3. Pronunciation: Which word has a different underlined part?", opts: ["A. future", "B. music", "C. drum", "D. tune"], ans: 2 },
+            { q: "4. Pronunciation: Which word has a different underlined part?", opts: ["A. transit", "B. farms", "C. service", "D. means"], ans: 1 },
+            { q: "5. Pronunciation: Which word has a different underlined part?", opts: ["A. headache", "B. stream", "C. mean", "D. cream"], ans: 0 },
+            { q: "6. Stress: Which word has a different primary stress pattern?", opts: ["A. guitar", "B. review", "C. ticket", "D. perform"], ans: 2 },
+            { q: "7. Stress: Which word has a different primary stress pattern?", opts: ["A. positive", "B. determine", "C. suitable", "D. motion"], ans: 1 },
+            { q: "8. Stress: Which word has a different primary stress pattern?", opts: ["A. piano", "B. popular", "C. reggaeton", "D. organize"], ans: 0 },
+            { q: "9. Stress: Which word has a different primary stress pattern?", opts: ["A. renewable", "B. amphibious", "C. environment", "D. information"], ans: 3 },
+            { q: "10. Stress: Which word has a different primary stress pattern?", opts: ["A. certificate", "B. astronomer", "C. innovation", "D. competitive"], ans: 2 }
+        ];
+
+        function initModule4() {
+            const container = document.getElementById('phonetics-container');
+            container.innerHTML = '';
+
+            phoneticsData.forEach((item, qIdx) => {
+                const wrap = document.createElement('div');
+                wrap.className = 'phonetic-q';
+                wrap.innerHTML = `<div style="font-weight:600; font-size:0.95rem;">${item.q}</div>`;
+
+                const grid = document.createElement('div');
+                grid.className = 'phonetic-options';
+
+                item.opts.forEach((optText, optIdx) => {
+                    const btn = document.createElement('div');
+                    btn.className = 'mcq-option';
+                    btn.textContent = optText;
+                    btn.onclick = () => selectPhonetic(qIdx, optIdx, btn, item.ans);
+                    grid.appendChild(btn);
+                });
+
+                wrap.appendChild(grid);
+                container.appendChild(wrap);
+            });
+        }
+
+        function selectPhonetic(qIdx, optIdx, element, correctIdx) {
+            const parent = element.parentElement;
+            if(parent.dataset.answered) return;
+            parent.dataset.answered = "true";
+
+            const options = parent.children;
+            if(optIdx === correctIdx) {
+                element.classList.add('correct-opt');
+                state.scores.m4 += 1; // 1 pt each = 10 total
+                saveScores();
+            } else {
+                element.classList.add('incorrect-opt');
+                options[correctIdx].classList.add('correct-opt');
+            }
+        }
+
+        /* Certificate SVG Update */
+        function updateCertificate() {
+            const total = state.scores.m1 + state.scores.m2 + state.scores.m3 + state.scores.m4;
+            const pct = Math.round((total / 30) * 100);
+            document.getElementById('cert-svg-name').textContent = state.studentName;
+            document.getElementById('cert-svg-score').textContent = `${total} / 30 (${pct}%)`;
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('cert-svg-date').textContent = `Date: ${today}`;
+        }
+
+        function resetAllProgress() {
+            if(confirm("Are you sure you want to reset all test answers and scores?")) {
+                localStorage.removeItem('g9_scores');
+                state.scores = { m1: 0, m2: 0, m3: 0, m4: 0 };
+                location.reload();
+            }
+        }
+
+        /* Offline Export Feature */
+        function exportOfflineApp() {
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "Grade9_English_FinalReview.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
